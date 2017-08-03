@@ -31,10 +31,10 @@ class BookDAO
 
 
 
-	    /**
-     * Return a list of all books, sorted by DB insertion date (most recent first).
+	/**
+     * Return a list of all books, sorted by descending id (most recent first).
      *
-     * @return array A list of all articles.
+     * @return array A list of all books.
      */
     public function findAll() {
         $sql = "select * from book order by book_id desc";
