@@ -19,11 +19,26 @@ class Book
     private $title;
 
     /**
-     * Book content.
+     * Book isbn.
      *
      * @var string
      */
-    private $content;
+    private $isbn;
+
+    /**
+     * Book summary.
+     *
+     * @var string
+     */
+    private $summary;
+
+    /**
+     * Author id.
+     *
+     * @var integer
+     */
+    private $authorId;
+
 
     public function getId() {
         return $this->id;
@@ -43,12 +58,25 @@ class Book
         return $this;
     }
 
-    public function getContent() {
-        return $this->content;
+    public function getIsbn() {
+        return $this->isbn;
     }
 
-    public function setContent($content) {
-        $this->content = $content;
+    public function setIsbn($isbn) {
+        $this->isbn = $isbn;
         return $this;
+    }
+
+        public function getSummary() {
+        return $this->summary;
+    }
+
+    public function setSummary($summary) {
+        $this->summary = $summary;
+        return $this;
+    }
+
+        public function getAuthorId() {
+        return $this->authorId;
     }
 }

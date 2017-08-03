@@ -5,8 +5,12 @@ namespace bookapp\DAO;
 use Doctrine\DBAL\Connection;
 use bookapp\Domain\Book;
 
+/**
+* Allows access to Book data stored in Database
+*/
 class BookDAO
 {
+
     /**
      * Database connection
      *
@@ -19,39 +23,47 @@ class BookDAO
      *
      * @param \Doctrine\DBAL\Connection The database connection object
      */
-    public function __construct(Connection $db) {
-        $this->db = $db;
-    }
+	
+	public function __construct(Connection $db)
+	{
+		$this->db = $db;
+	}
 
-    /**
-     * Return a list of all Books, sorted by date (most recent first).
+
+
+	    /**
+     * Return a list of all books, sorted by DB insertion date (most recent first).
      *
-     * @return array A list of all Books.
+     * @return array A list of all articles.
      */
     public function findAll() {
-        $sql = "select * from book_list order by id desc";
+        $sql = "select * from book order by book_id desc";
         $result = $this->db->fetchAll($sql);
         
         // Convert query result to an array of domain objects
-        $Books = array();
+        $books = array();
         foreach ($result as $row) {
-            $BookId = $row['id'];
-            $Books[$BookId] = $this->buildBook($row);
+            $bookId = $row['book_id'];
+            $books[$bookId] = $this->buildBook($row);
         }
-        return $Books;
+        return $books;
     }
 
-    /**
+
+
+     /**
      * Creates an Book object based on a DB row.
      *
      * @param array $row The DB row containing Book data.
-     * @return \MicroCMS\Domain\Book
+     * @return \bookapp\Domain\Book
      */
     private function buildBook(array $row) {
-        $Book = new Book();
-        $Book->setId($row['id']);
-        $Book->setTitle($row['book_title']);
-        $Book->setContent($row['book_content']);
-        return $Book;
+        $book = new Book();
+        $book->setId($row['book_id']);
+        $book->setTitle($row['book_title']);
+        $book->setIsbn($row['book_isbn']);
+        $book->setSummary($row['book_summary']);
+        $book->getAuthorId($row['auth_id']);
+        return $book;
     }
 }

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="bookapp.css" rel="stylesheet" />
+    <title>Gestionnaire de Livres - Bienvenue</title>
+</head>
+<body>
+    <header>
+        <h1>Gestionnaire de Livres</h1>
+    </header>
+    {% for book in books %}
+    <article>
+        <h2>{{ book.title }}</h2>
+        <p>{{ book.summary }}</p>
+    </article>
+    {% endfor %}
+    <footer class="footer">
+    BookApp - Powered by Silex - BootStrap - Twig
+    </footer>
+</body>
+</html>
