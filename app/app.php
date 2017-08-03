@@ -13,6 +13,10 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
 
+$app->register(new Silex\Provider\AssetServiceProvider(), array(
+    'assets.version' => 'v1'
+));
+
 // Register services.
 $app['dao.book'] = function ($app) {
     return new bookapp\DAO\BookDAO($app['db']);
