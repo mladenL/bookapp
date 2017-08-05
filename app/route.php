@@ -5,7 +5,7 @@
 //     $books = $app['dao.book']->findAll();
 
 $app->get('/', function () use ($app) {
-    $books = $app['dao.book']->findAll();
+    $books = $app['dao.book']->findAllByAuthor();
     return $app['twig']->render('view.html.twig', array('books' => $books));
 });
 

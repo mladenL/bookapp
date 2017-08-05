@@ -37,7 +37,16 @@ class Book
      *
      * @var integer
      */
-    private $authorId;
+    private $author;
+
+
+    /**
+     * Corresponding author.
+     *
+     * @var \bookapp\Domain\Author
+     */
+    private $author;
+
 
 
     public function getId() {
@@ -76,7 +85,12 @@ class Book
         return $this;
     }
 
-        public function getAuthorId() {
-        return $this->authorId;
+        public function getAuthor() {
+        return $this->author;
     }
+
+        public function setAuthor(Author $author) {
+            $this->author = $author;
+            return $this;
+        }
 }
