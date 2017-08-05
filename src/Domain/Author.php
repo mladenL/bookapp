@@ -44,7 +44,17 @@ class Author
 		return $this->authFirstName;
 	}
 
-	public function setAuthFirstName($authLastName) {
+	public function setAuthFirstName($authFirstName) {
+		$this->authFirstName
+ = 	$authFirstName;
+ 		return $this;
+	}
+
+	public function getAuthLastName() {
+		return $this->authLastName;
+	}
+
+	public function setAuthLastName($authLastName) {
 		$this->authLastName
  = 	$authLastName;
  		return $this;

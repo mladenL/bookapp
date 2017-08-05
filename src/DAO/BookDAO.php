@@ -15,7 +15,7 @@ class BookDAO extends DAO
      * @var \bookapp\DAO\ArticleDAO
      */
 
-    private $articleDAO; //this var and below method are the dependency to Article object.
+    private $authorDAO; //this var and below method are the dependency to Article object.
 
 
     private function setAuthorDAO(AuthorDAO $authorDAO) {
@@ -28,16 +28,10 @@ class BookDAO extends DAO
      * @return array A list of all books
      */
 
-    public function findAllByAuthor($authorId) {
-        $author = $this->AuthorDAO->find($authorId);
+    public function findAll() {
 
-        // auth_id is not selected by the SQL query
-        // The article won't be retrieved during domain objet construction
-
-        $sql = "SELECT * FROM book WHERE auth_id=? ORDER BY book_id";
-
-        $result = $this->getDb()->fetchAll($sql, array($authorId));
-
+        $sql = "SELECT * FROM book ORDER BY book_id";
+        $result = $this->getDb()->fetchAll($sql);
         // Convert query result to an array of domain objects
 
         $books = array();
@@ -62,11 +56,12 @@ class BookDAO extends DAO
      */
 
     protected function buildDomainObject(array $row) {
-        $comment = new Comment();
-        $comment->setId($row['book_id']);
-        $comment->setTitle($row['book_title']);
-        $comment->setIsbn($row['book_isbn']);
-        $comment->setSummary($row['book_summary']);
+        $book = new Book();
+        $book->setId($row['book_id']);
+        $book->setTitle($row['book_title']);
+        $book->setIsbn($row['book_isbn']);
+        $book->setSummary($row['book_summary']);
+
 
         if (array_key_exists('auth_id', $row)) {
             // Find and set the associated author

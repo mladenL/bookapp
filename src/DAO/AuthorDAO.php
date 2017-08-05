@@ -50,14 +50,14 @@ class AuthorDAO {
      *
      * @return \MicroCMS\Domain\Article|throws an exception if no matching article is found
      */
-    public function find($id) {
+    public function find($authorId) {
         $sql = "SELECT * FROM author WHERE auth_id=?";
-        $row = $this->getDb()->fetchAssoc($sql, array($id));
+        $row = $this->getDb()->fetchAssoc($sql, array($authorId));
 
         if ($row)
             return $this->buildDomainObject($row);
         else
-            throw new \Exception("No Author matching id " . $id);
+            throw new \Exception("No Author matching id " . $authorId);
     }
 
 }

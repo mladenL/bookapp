@@ -32,13 +32,6 @@ class Book
      */
     private $summary;
 
-    /**
-     * Author id.
-     *
-     * @var integer
-     */
-    private $author;
-
 
     /**
      * Corresponding author.

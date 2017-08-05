@@ -34,7 +34,7 @@ abstract class DAO
 	 */
 
 	protected function getDb() {
-		return $this-db;
+		return $this->db;
 	}
 
 	 /**
